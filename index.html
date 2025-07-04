@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil Profesional</title>
+    
+    <!-- Tailwind CSS para el diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <style>
+        /* Estilos base */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #F3F4F6;
+            overflow-x: hidden;
+            background-color: #111827;
+        }
+
+        /* FONDO ANIMADO PROFESIONAL */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(circle at 15% 25%, rgba(29, 78, 216, 0.2), transparent 40%),
+                radial-gradient(circle at 85% 65%, rgba(16, 185, 129, 0.15), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(124, 58, 237, 0.1), transparent 50%);
+            background-color: #111827;
+            animation: moveBackground 25s alternate infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(10px, -10px); }
+        }
+        
+        /* Contenedor principal para el efecto de apilamiento */
+        .stack-container {
+            position: relative;
+            z-index: 1;
+            transition: padding-top 0.5s ease;
+        }
+
+        /* Estilo para cada sección */
+        .profile-section {
+            height: 100vh;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 1rem;
+            box-sizing: border-box;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.8s ease;
+        }
+        
+        .recede {
+            transform: scale(0.9) !important;
+            opacity: 0.6 !important;
+            filter: blur(4px);
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-color: #1f2937;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.5rem;
+        }
+
+        #top-nav {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        #profile-info {
+            position: relative;
+            z-index: 10;
+            background-color: #111827;
+            padding: 3rem 1rem;
+            transition: all 0.5s ease;
+        }
+
+        #profile-info.is-sticky {
+            position: fixed;
+            top: 0; /* Se pega en la parte superior */
+            left: 0;
+            right: 0;
+            z-index: 40; /* Debajo del menú principal */
+            display: flex;
+            justify-content: center; /* Centra el contenido */
+            align-items: center;
+            padding: 0.75rem 2rem;
+            background-color: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(0);
+        }
+        
+        #profile-info.is-sticky .profile-main-info p,
+        #profile-info.is-sticky .founder-section {
+            display: none; /* Ocultar resumen y sección founder en modo sticky */
+        }
+
+        #profile-info.is-sticky .profile-main-info {
+            display: flex;
+            flex-direction: column; /* Apila la imagen y el nombre verticalmente */
+            align-items: center;
+            text-align: center;
+        }
+        
+        #profile-info.is-sticky .profile-main-info img {
+            width: 3.5rem;
+            height: 3.5rem;
+            margin-bottom: 0.5rem; /* Espacio entre imagen y nombre */
+        }
+
+        #profile-info.is-sticky .profile-main-info h1 {
+            font-size: 1.25rem; /* Fuente más pequeña para el header sticky */
+            margin-left: 0;
+        }
+        
+        /* Protección de imágenes */
+        img {
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .scroll-container {
+            max-height: 45vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .scroll-arrow {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #9ca3af;
+            transition: color 0.2s;
+        }
+        .scroll-arrow:hover {
+            color: #e5e7eb;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ====================================================== -->
+    <!-- MENÚ DE NAVEGACIÓN FIJO -->
+    <!-- ====================================================== -->
+    <header id="top-nav" class="fixed top-0 left-0 right-0 z-[100] bg-gray-900/50 backdrop-blur-sm border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-14">
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
+                    <a href="#presentacion" class="hover:text-white transition-colors">Inicio</a>
+                    <a href="#educacion" class="hover:text-white transition-colors">Educación</a>
+                    <a href="#respaldo" class="hover:text-white transition-colors">Respaldo</a>
+                    <a href="#profesiones" class="hover:text-white transition-colors">Roles</a>
+                    <a href="#testimonios" class="hover:text-white transition-colors">Testimonios</a>
+                    <a href="#ia-iframe" class="hover:text-white transition-colors">Demo IA</a>
+                    <a href="#contacto" class="bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700 transition-colors">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- ====================================================== -->
+        <!-- SECCIÓN 1: PRESENTACIÓN (SOLO FONDO) -->
+        <!-- ====================================================== -->
+        <section id="presentacion" class="h-screen bg-cover bg-center relative">
+            <div class="absolute inset-0 bg-black/30"></div> <!-- Overlay oscuro -->
+            
+            <div class="absolute top-1/2 left-4 md:left-8 lg:left-16 transform -translate-y-1/2 text-white max-w-md lg:max-w-xl z-10">
+                 <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Victor R. Colussi</h1>
+                 <hr class="my-4 border-t-2 border-cyan-400 w-1/4">
+                 <p class="text-lg md:text-2xl text-gray-300">Experto en Inteligencia de Negocios | IA | Datos</p>
+                 <!-- CTA Contactar -->
+                 <a href="#contacto" class="mt-8 inline-block bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-4 px-12 rounded-full shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300 ease-in-out">
+                    Hablemos de tu Proyecto
+                </a>
+            </div>
+
+            <div class="absolute bottom-4 right-4 w-1/2 md:w-2/5 h-3/4 bg-transparent rounded-lg shadow-lg opacity-75">
+                <img src="https://placehold.co/400x600/2d3748/e2e8f0?text=Foto+Portada" alt="Foto de Portada" class="w-full h-full object-cover rounded-lg">
+            </div>
+        </section>
+
+        <!-- ====================================================== -->
+        <!-- INFO DE PERFIL (SE CONVIERTE EN STICKY HEADER) -->
+        <!-- ====================================================== -->
+        <div id="profile-info" class="flex flex-col items-center">
+            <div class="profile-main-info text-center">
+                <img src="https://placehold.co/200x200/4a5568/e2e8f0?text=Tu+Foto" alt="Foto de Perfil" class="w-40 h-40 rounded-full border-4 border-gray-400 object-cover shadow-2xl mb-4 transition-all duration-500 mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2 transition-all duration-500">Tu Nombre Aquí</h1>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto transition-all duration-500">
+                    Un breve resumen sobre ti. Apasionado desarrollador de software con experiencia en la creación de soluciones innovadoras y escalables.
+                </p>
+            </div>
+
+            <!-- Founder Section Start -->
+            <div class="founder-section text-center mt-8 pt-8 border-t border-gray-800 w-full max-w-3xl">
+                <h2 class="text-2xl font-bold text-gray-300 mb-4">Founder</h2>
+                <div class="flex justify-center items-center gap-8 md:gap-12">
+                    <img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo+1" alt="Logo Empresa 1" class="h-12 opacity-80 hover:opacity-100 transition-opacity">
+                    <img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo+2" alt="Logo Empresa 2" class="h-12 opacity-80 hover:opacity-100 transition-opacity">
+                    <img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo+3" alt="Logo Empresa 3" class="h-12 opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+            <!-- Founder Section End -->
+        </div>
+
+
+        <div class="stack-container">
+            <!-- SECCIONES DE CONTENIDO -->
+            <section id="educacion" class="profile-section">
+                <div class="card-content">
+                    <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+                        <!-- Columna Títulos -->
+                        <div class="text-center lg:text-left">
+                            <h2 class="text-4xl md:text-5xl font-bold mb-4">Títulos Académicos</h2>
+                            <div class="flex justify-center lg:justify-start gap-4 mb-4">
+                                <i class="fas fa-arrow-up scroll-arrow" data-target="titles-scroll" data-direction="-1"></i>
+                                <i class="fas fa-arrow-down scroll-arrow" data-target="titles-scroll" data-direction="1"></i>
+                            </div>
+                            <div id="titles-scroll" class="scroll-container pr-2">
+                                <div class="space-y-4">
+                                    <!-- Repetir 6 veces -->
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4">
+                                        <img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0">
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-cyan-400">Ingeniería en Sistemas</h3>
+                                            <p class="text-gray-400">Universidad Tecnológica - 2020</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Maestría en Ciencia de Datos</h3><p class="text-gray-400">Instituto de Postgrado - 2022</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 3</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 4</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 5</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 6</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Columna Cursos -->
+                        <div class="text-center lg:text-left">
+                            <h2 class="text-4xl md:text-5xl font-bold mb-4">Cursos y Certificaciones</h2>
+                            <div class="flex justify-center lg:justify-start gap-4 mb-4">
+                                <i class="fas fa-arrow-up scroll-arrow" data-target="courses-scroll" data-direction="-1"></i>
+                                <i class="fas fa-arrow-down scroll-arrow" data-target="courses-scroll" data-direction="1"></i>
+                            </div>
+                            <div id="courses-scroll" class="scroll-container pr-2">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <!-- Repetir 8 veces -->
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Cloud Computing</h3><p class="text-gray-400 text-sm">Plataforma Educativa</p></div>
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Machine Learning</h3><p class="text-gray-400 text-sm">Academia de IA</p></div>
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Curso Placeholder 3</h3><p class="text-gray-400 text-sm">Entidad Placeholder</p></div>
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Curso Placeholder 4</h3><p class="text-gray-400 text-sm">Entidad Placeholder</p></div>
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Curso Placeholder 5</h3><p class="text-gray-400 text-sm">Entidad Placeholder</p></div>
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Curso Placeholder 6</h3><p class="text-gray-400 text-sm">Entidad Placeholder</p></div>
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Curso Placeholder 7</h3><p class="text-gray-400 text-sm">Entidad Placeholder</p></div>
+                                    <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Curso Placeholder 8</h3><p class="text-gray-400 text-sm">Entidad Placeholder</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="respaldo" class="profile-section">
+                <div class="card-content">
+                    <div class="w-full max-w-4xl text-center flex flex-col items-center">
+                         <h2 class="text-4xl md:text-5xl font-bold mb-12">Respaldo y Colaboradores</h2>
+                         <div class="w-full mb-12">
+                            <h3 class="text-3xl font-semibold mb-8 text-gray-300">Empresas</h3>
+                            <div class="flex flex-wrap justify-center items-center gap-8"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 1" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 2" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 3" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 4" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><div class="flex items-center justify-center h-16 w-32 text-2xl font-bold text-gray-400 border-2 border-dashed border-gray-600 rounded-lg">+130</div></div>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="text-3xl font-semibold mb-8 text-gray-300">Partners</h3>
+                            <div class="flex flex-wrap justify-center items-center gap-8"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 1" class="h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 2" class="h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 3" class="h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="profesiones" class="profile-section">
+                <div class="card-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Profesiones y Roles</h2>
+                    <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Desarrollador Full-Stack</h3><p class="text-gray-400">Creación de aplicaciones web completas, del backend al frontend.</p></div>
+                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Científico de Datos</h3><p class="text-gray-400">Análisis de datos, modelado predictivo y visualización.</p></div>
+                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Arquitecto Cloud</h3><p class="text-gray-400">Diseño de infraestructuras escalables y seguras en la nube.</p></div>
+                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Consultor Tecnológico</h3><p class="text-gray-400">Asesoramiento para optimizar el stack tecnológico de empresas.</p></div>
+                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Líder de Proyecto Técnico</h3><p class="text-gray-400">Gestión de equipos para la entrega de proyectos exitosos.</p></div>
+                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Especialista en MLOps</h3><p class="text-gray-400">Implementación y mantenimiento de pipelines de Machine Learning.</p></div>
+                    </div>
+                </div>
+            </section>
+            <section id="testimonios" class="profile-section">
+                <div class="card-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Testimonios</h2>
+                    <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su profesionalismo y conocimiento técnico llevaron nuestro proyecto al siguiente nivel."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Cliente Satisfecho</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Un colaborador excepcional, siempre dispuesto a ayudar y con una capacidad increíble para resolver problemas."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Colega de Trabajo</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"La calidad del entregable final superó todas nuestras expectativas. Altamente recomendado."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Director de Proyecto</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su visión estratégica fue clave para el éxito. Un verdadero líder y un gran compañero."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Mentor Técnico</cite></div></blockquote>
+                    </div>
+                </div>
+            </section>
+            <section id="ia-iframe" class="profile-section">
+                <div class="card-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center">Demostración Interactiva de IA</h2>
+                    <div class="w-full max-w-4xl h-3/5 bg-gray-900 rounded-2xl overflow-hidden border border-gray-700"><iframe src="" title="Demostración de IA" class="w-full h-full"></iframe></div>
+                    <p class="mt-4 text-gray-400">Aquí puedes incrustar una demo de tu proyecto de IA.</p>
+                </div>
+            </section>
+            <section id="contacto" class="profile-section">
+                <div class="card-content">
+                    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div class="text-center lg:text-left">
+                            <h2 class="text-4xl md:text-5xl font-bold mb-4">Información de Contacto</h2>
+                            <p class="text-gray-400 mb-8 text-lg">No dudes en contactarme a través de estos medios o sígueme en mis redes.</p>
+                            <div class="space-y-4 text-lg">
+                                <a href="mailto:tuemail@example.com" class="flex items-center gap-4 hover:text-cyan-400 transition-colors"><i class="fas fa-envelope w-6 text-center"></i><span>tuemail@example.com</span></a>
+                                <a href="tel:+123456789" class="flex items-center gap-4 hover:text-cyan-400 transition-colors"><i class="fas fa-phone w-6 text-center"></i><span>+1 234 567 89</span></a>
+                                <div class="flex items-center gap-4"><i class="fas fa-map-marker-alt w-6 text-center"></i><span>Tu Ciudad, Tu País</span></div>
+                            </div>
+                            <h3 class="text-2xl font-bold mt-12 mb-4">Mis Redes</h3>
+                            <div class="flex justify-center lg:justify-start gap-6">
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors text-3xl"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors text-3xl"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors text-3xl"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors text-3xl"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div>
+                             <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center lg:text-left">Envíame un Mensaje</h2>
+                            <form action="#" method="POST" class="space-y-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><input type="text" placeholder="Tu Nombre" class="w-full p-4 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors"><input type="email" placeholder="Tu Email" class="w-full p-4 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors"></div>
+                                <input type="text" placeholder="Asunto del Mensaje" class="w-full p-4 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors">
+                                <textarea placeholder="Describe tu idea o consulta..." rows="5" class="w-full p-4 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors"></textarea>
+                                <button type="submit" class="w-full p-4 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold text-white text-lg transition-colors">Enviar Mensaje</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="#" class="hover:text-white transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="hover:text-white transition-colors text-2xl"><i class="fab fa-github"></i></a>
+                <a href="#" class="hover:text-white transition-colors text-2xl"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-white transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2025 Victor R. Colussi. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mensaje en consola para proteger derechos de autor
+            console.log('%cEsta pagina tiene todos los derechos reservados por Victor R. Colussi. No copies sin autorización de su dueño.', 'color: #f8c300; font-size: 20px; font-weight: bold; background-color: #111827; padding: 10px; border-radius: 5px;');
+            
+            // Deshabilitar menú contextual (clic derecho)
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            const topNav = document.getElementById('top-nav');
+            const mainContent = document.getElementById('main-content');
+            const sections = Array.from(document.querySelectorAll('.stack-container .profile-section'));
+            const profileInfo = document.getElementById('profile-info');
+            const stackContainer = document.querySelector('.stack-container');
+            const navLinks = document.querySelectorAll('#top-nav a');
+            let lastActiveIndex = 0;
+            let lastScrollY = window.scrollY;
+
+            // Ajustar padding del contenido principal para dejar espacio al menú fijo
+            mainContent.style.paddingTop = `${topNav.offsetHeight}px`;
+
+            // Lógica del Observer para el efecto de apilamiento
+            const observer = new IntersectionObserver((entries) => {
+                let mostVisibleEntry = null;
+                let maxRatio = 0;
+                entries.forEach(entry => {
+                    if (entry.intersectionRatio > maxRatio) {
+                        maxRatio = entry.intersectionRatio;
+                        mostVisibleEntry = entry;
+                    }
+                });
+
+                if (mostVisibleEntry) {
+                    lastActiveIndex = sections.indexOf(mostVisibleEntry.target);
+                }
+
+                sections.forEach((sec, i) => {
+                    if (i < lastActiveIndex) {
+                        sec.classList.add('recede');
+                    } else {
+                        sec.classList.remove('recede');
+                    }
+                });
+            }, { 
+                threshold: Array.from(Array(101).keys(), i => i / 100) // Observe at every 1% increment
+            });
+
+            sections.forEach(section => observer.observe(section));
+            
+            // Lógica para el header dinámico (sticky)
+            const profileInfoTriggerPoint = profileInfo.offsetTop - topNav.offsetHeight;
+            const topNavHeight = topNav.offsetHeight;
+
+            // Añadir estilo para la posición sticky del profile-info
+            const stickyProfileInfoStyle = document.createElement('style');
+            document.head.appendChild(stickyProfileInfoStyle);
+            stickyProfileInfoStyle.innerHTML = `#profile-info.is-sticky { top: ${topNavHeight}px; }`;
+
+            window.addEventListener('scroll', () => {
+                // Ocultar/mostrar menú al hacer scroll
+                if (window.scrollY > lastScrollY && window.scrollY > 200) { // Ocultar después de un poco de scroll
+                    topNav.classList.add('nav-hidden');
+                } else {
+                    topNav.classList.remove('nav-hidden');
+                }
+                lastScrollY = window.scrollY <= 0 ? 0 : window.scrollY;
+
+                // Lógica para el header sticky
+                if (window.scrollY >= profileInfoTriggerPoint) {
+                    if (!profileInfo.classList.contains('is-sticky')) {
+                        profileInfo.classList.add('is-sticky');
+                        stackContainer.style.paddingTop = profileInfo.offsetHeight + 'px';
+                    }
+                } else {
+                    if (profileInfo.classList.contains('is-sticky')) {
+                        profileInfo.classList.remove('is-sticky');
+                        stackContainer.style.paddingTop = '0';
+                    }
+                }
+            });
+
+            // Lógica para los botones de scroll en la sección de educación
+            const scrollArrows = document.querySelectorAll('.scroll-arrow');
+            scrollArrows.forEach(arrow => {
+                arrow.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const direction = parseInt(this.dataset.direction);
+                    const scrollContainer = document.getElementById(targetId);
+                    
+                    if (scrollContainer) {
+                        const scrollAmount = 150;
+                        scrollContainer.scrollBy({ top: scrollAmount * direction, left: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
