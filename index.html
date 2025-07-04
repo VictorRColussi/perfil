@@ -183,7 +183,8 @@
     <!-- ====================================================== -->
     <header id="top-nav" class="fixed top-0 left-0 right-0 z-[100] bg-gray-900/50 backdrop-blur-sm border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-center h-14">
+            <div class="flex items-center justify-center md:justify-center h-14">
+                <!-- Menú de escritorio -->
                 <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
                     <a href="#presentacion" class="hover:text-white transition-colors">Inicio</a>
                     <a href="#educacion" class="hover:text-white transition-colors">Educación</a>
@@ -193,16 +194,41 @@
                     <a href="#ia-iframe" class="hover:text-white transition-colors">Demo IA</a>
                     <a href="#contacto" class="bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700 transition-colors">Contacto</a>
                 </nav>
+                <!-- Botón de menú móvil -->
+                <div class="md:hidden flex items-center w-full justify-end">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
+    
+    <!-- Panel de Menú Móvil -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900/90 backdrop-blur-sm z-[110]">
+        <div class="flex justify-end p-4">
+            <button id="mobile-menu-close-button" class="text-gray-300 hover:text-white focus:outline-none">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium text-gray-200">
+            <a href="#presentacion" class="mobile-nav-link hover:text-cyan-400 transition-colors">Inicio</a>
+            <a href="#educacion" class="mobile-nav-link hover:text-cyan-400 transition-colors">Educación</a>
+            <a href="#respaldo" class="mobile-nav-link hover:text-cyan-400 transition-colors">Respaldo</a>
+            <a href="#profesiones" class="mobile-nav-link hover:text-cyan-400 transition-colors">Roles</a>
+            <a href="#testimonios" class="mobile-nav-link hover:text-cyan-400 transition-colors">Testimonios</a>
+            <a href="#ia-iframe" class="mobile-nav-link hover:text-cyan-400 transition-colors">Demo IA</a>
+            <a href="#contacto" class="mobile-nav-link bg-cyan-600 text-white py-3 px-6 rounded-md hover:bg-cyan-700 transition-colors">Contacto</a>
+        </nav>
+    </div>
+
 
     <main id="main-content">
         <!-- ====================================================== -->
         <!-- SECCIÓN 1: PRESENTACIÓN (SOLO FONDO) -->
         <!-- ====================================================== -->
         <section id="presentacion" class="h-screen bg-cover bg-center relative">
-            <div class="absolute inset-0 bg-black/30"></div> <!-- Overlay oscuro -->
+            <div class="absolute inset-0 bg-black/40"></div> <!-- Overlay oscuro -->
             
             <div class="absolute top-1/2 left-4 md:left-8 lg:left-16 transform -translate-y-1/2 text-white max-w-md lg:max-w-xl z-10">
                  <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Victor R. Colussi</h1>
@@ -251,21 +277,14 @@
                     <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
                         <!-- Columna Títulos -->
                         <div class="text-center lg:text-left">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-4">Títulos Académicos</h2>
+                            <h2 class="text-3xl md:text-4xl font-bold mb-4">Títulos Académicos</h2>
                             <div class="flex justify-center lg:justify-start gap-4 mb-4">
                                 <i class="fas fa-arrow-up scroll-arrow" data-target="titles-scroll" data-direction="-1"></i>
                                 <i class="fas fa-arrow-down scroll-arrow" data-target="titles-scroll" data-direction="1"></i>
                             </div>
                             <div id="titles-scroll" class="scroll-container pr-2">
                                 <div class="space-y-4">
-                                    <!-- Repetir 6 veces -->
-                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4">
-                                        <img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0">
-                                        <div>
-                                            <h3 class="text-xl font-semibold text-cyan-400">Ingeniería en Sistemas</h3>
-                                            <p class="text-gray-400">Universidad Tecnológica - 2020</p>
-                                        </div>
-                                    </div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Ingeniería en Sistemas</h3><p class="text-gray-400">Universidad Tecnológica - 2020</p></div></div>
                                     <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Maestría en Ciencia de Datos</h3><p class="text-gray-400">Instituto de Postgrado - 2022</p></div></div>
                                     <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 3</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
                                     <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 4</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
@@ -276,14 +295,13 @@
                         </div>
                         <!-- Columna Cursos -->
                         <div class="text-center lg:text-left">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-4">Cursos y Certificaciones</h2>
+                            <h2 class="text-3xl md:text-4xl font-bold mb-4">Cursos y Certificaciones</h2>
                             <div class="flex justify-center lg:justify-start gap-4 mb-4">
                                 <i class="fas fa-arrow-up scroll-arrow" data-target="courses-scroll" data-direction="-1"></i>
                                 <i class="fas fa-arrow-down scroll-arrow" data-target="courses-scroll" data-direction="1"></i>
                             </div>
                             <div id="courses-scroll" class="scroll-container pr-2">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <!-- Repetir 8 veces -->
                                     <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Cloud Computing</h3><p class="text-gray-400 text-sm">Plataforma Educativa</p></div>
                                     <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Machine Learning</h3><p class="text-gray-400 text-sm">Academia de IA</p></div>
                                     <div class="text-center"><div class="bg-gray-800 p-3 rounded-xl border border-gray-700 mb-3"><img src="https://placehold.co/600x400/111827/4a5568?text=Certificado" alt="Imagen del certificado" class="rounded-lg"></div><h3 class="text-lg font-semibold text-cyan-400">Curso Placeholder 3</h3><p class="text-gray-400 text-sm">Entidad Placeholder</p></div>
@@ -301,54 +319,54 @@
             <section id="respaldo" class="profile-section">
                 <div class="card-content">
                     <div class="w-full max-w-4xl text-center flex flex-col items-center">
-                         <h2 class="text-4xl md:text-5xl font-bold mb-12">Respaldo y Colaboradores</h2>
+                         <h2 class="text-3xl md:text-4xl font-bold mb-12">Respaldo y Colaboradores</h2>
                          <div class="w-full mb-12">
-                            <h3 class="text-3xl font-semibold mb-8 text-gray-300">Empresas</h3>
-                            <div class="flex flex-wrap justify-center items-center gap-8"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 1" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 2" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 3" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 4" class="h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><div class="flex items-center justify-center h-16 w-32 text-2xl font-bold text-gray-400 border-2 border-dashed border-gray-600 rounded-lg">+130</div></div>
+                            <h3 class="text-2xl md:text-3xl font-semibold mb-8 text-gray-300">Empresas</h3>
+                            <div class="flex flex-wrap justify-center items-center gap-8"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 1" class="h-12 md:h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 2" class="h-12 md:h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 3" class="h-12 md:h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Logo" alt="Logo Empresa 4" class="h-12 md:h-16 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><div class="flex items-center justify-center h-12 md:h-16 w-24 md:w-32 text-xl md:text-2xl font-bold text-gray-400 border-2 border-dashed border-gray-600 rounded-lg">+130</div></div>
                         </div>
                         <div class="w-full">
-                            <h3 class="text-3xl font-semibold mb-8 text-gray-300">Partners</h3>
-                            <div class="flex flex-wrap justify-center items-center gap-8"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 1" class="h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 2" class="h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 3" class="h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"></div>
+                            <h3 class="text-2xl md:text-3xl font-semibold mb-8 text-gray-300">Partners</h3>
+                            <div class="flex flex-wrap justify-center items-center gap-8"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 1" class="h-10 md:h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 2" class="h-10 md:h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"><img src="https://placehold.co/150x80/e2e8f0/4a5568?text=Partner" alt="Logo Partner 3" class="h-10 md:h-14 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"></div>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="profesiones" class="profile-section">
                 <div class="card-content">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Profesiones y Roles</h2>
-                    <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Desarrollador Full-Stack</h3><p class="text-gray-400">Creación de aplicaciones web completas, del backend al frontend.</p></div>
-                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Científico de Datos</h3><p class="text-gray-400">Análisis de datos, modelado predictivo y visualización.</p></div>
-                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Arquitecto Cloud</h3><p class="text-gray-400">Diseño de infraestructuras escalables y seguras en la nube.</p></div>
-                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Consultor Tecnológico</h3><p class="text-gray-400">Asesoramiento para optimizar el stack tecnológico de empresas.</p></div>
-                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Líder de Proyecto Técnico</h3><p class="text-gray-400">Gestión de equipos para la entrega de proyectos exitosos.</p></div>
-                        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-2xl font-semibold text-green-400 mb-2">Especialista en MLOps</h3><p class="text-gray-400">Implementación y mantenimiento de pipelines de Machine Learning.</p></div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Profesiones y Roles</h2>
+                    <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                        <div class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-2">Desarrollador Full-Stack</h3><p class="text-gray-400">Creación de aplicaciones web completas, del backend al frontend.</p></div>
+                        <div class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-2">Científico de Datos</h3><p class="text-gray-400">Análisis de datos, modelado predictivo y visualización.</p></div>
+                        <div class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-2">Arquitecto Cloud</h3><p class="text-gray-400">Diseño de infraestructuras escalables y seguras en la nube.</p></div>
+                        <div class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-2">Consultor Tecnológico</h3><p class="text-gray-400">Asesoramiento para optimizar el stack tecnológico de empresas.</p></div>
+                        <div class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-2">Líder de Proyecto Técnico</h3><p class="text-gray-400">Gestión de equipos para la entrega de proyectos exitosos.</p></div>
+                        <div class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 hover:border-green-400 transition-colors"><h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-2">Especialista en MLOps</h3><p class="text-gray-400">Implementación y mantenimiento de pipelines de Machine Learning.</p></div>
                     </div>
                 </div>
             </section>
             <section id="testimonios" class="profile-section">
                 <div class="card-content">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Testimonios</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Testimonios</h2>
                     <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su profesionalismo y conocimiento técnico llevaron nuestro proyecto al siguiente nivel."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Cliente Satisfecho</cite></div></blockquote>
-                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Un colaborador excepcional, siempre dispuesto a ayudar y con una capacidad increíble para resolver problemas."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Colega de Trabajo</cite></div></blockquote>
-                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"La calidad del entregable final superó todas nuestras expectativas. Altamente recomendado."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Director de Proyecto</cite></div></blockquote>
-                        <blockquote class="bg-gray-800 p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su visión estratégica fue clave para el éxito. Un verdadero líder y un gran compañero."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Mentor Técnico</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su profesionalismo y conocimiento técnico llevaron nuestro proyecto al siguiente nivel."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Cliente Satisfecho</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Un colaborador excepcional, siempre dispuesto a ayudar y con una capacidad increíble para resolver problemas."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Colega de Trabajo</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"La calidad del entregable final superó todas nuestras expectativas. Altamente recomendado."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Director de Proyecto</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su visión estratégica fue clave para el éxito. Un verdadero líder y un gran compañero."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Mentor Técnico</cite></div></blockquote>
                     </div>
                 </div>
             </section>
             <section id="ia-iframe" class="profile-section">
                 <div class="card-content">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center">Demostración Interactiva de IA</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Demostración Interactiva de IA</h2>
                     <div class="w-full max-w-4xl h-3/5 bg-gray-900 rounded-2xl overflow-hidden border border-gray-700"><iframe src="" title="Demostración de IA" class="w-full h-full"></iframe></div>
                     <p class="mt-4 text-gray-400">Aquí puedes incrustar una demo de tu proyecto de IA.</p>
                 </div>
             </section>
             <section id="contacto" class="profile-section">
                 <div class="card-content">
-                    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
                         <div class="text-center lg:text-left">
-                            <h2 class="text-4xl md:text-5xl font-bold mb-4">Información de Contacto</h2>
+                            <h2 class="text-3xl md:text-4xl font-bold mb-4">Información de Contacto</h2>
                             <p class="text-gray-400 mb-8 text-lg">No dudes en contactarme a través de estos medios o sígueme en mis redes.</p>
                             <div class="space-y-4 text-lg">
                                 <a href="mailto:tuemail@example.com" class="flex items-center gap-4 hover:text-cyan-400 transition-colors"><i class="fas fa-envelope w-6 text-center"></i><span>tuemail@example.com</span></a>
@@ -364,7 +382,7 @@
                             </div>
                         </div>
                         <div>
-                             <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center lg:text-left">Envíame un Mensaje</h2>
+                             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left">Envíame un Mensaje</h2>
                             <form action="#" method="POST" class="space-y-6">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><input type="text" placeholder="Tu Nombre" class="w-full p-4 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors"><input type="email" placeholder="Tu Email" class="w-full p-4 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors"></div>
                                 <input type="text" placeholder="Asunto del Mensaje" class="w-full p-4 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors">
@@ -404,7 +422,11 @@
             const sections = Array.from(document.querySelectorAll('.stack-container .profile-section'));
             const profileInfo = document.getElementById('profile-info');
             const stackContainer = document.querySelector('.stack-container');
-            const navLinks = document.querySelectorAll('#top-nav a');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuCloseButton = document.getElementById('mobile-menu-close-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            
             let lastActiveIndex = 0;
             let lastScrollY = window.scrollY;
 
@@ -434,7 +456,7 @@
                     }
                 });
             }, { 
-                threshold: Array.from(Array(101).keys(), i => i / 100) // Observe at every 1% increment
+                threshold: Array.from(Array(101).keys(), i => i / 100)
             });
 
             sections.forEach(section => observer.observe(section));
@@ -443,14 +465,13 @@
             const profileInfoTriggerPoint = profileInfo.offsetTop - topNav.offsetHeight;
             const topNavHeight = topNav.offsetHeight;
 
-            // Añadir estilo para la posición sticky del profile-info
             const stickyProfileInfoStyle = document.createElement('style');
             document.head.appendChild(stickyProfileInfoStyle);
             stickyProfileInfoStyle.innerHTML = `#profile-info.is-sticky { top: ${topNavHeight}px; }`;
 
             window.addEventListener('scroll', () => {
                 // Ocultar/mostrar menú al hacer scroll
-                if (window.scrollY > lastScrollY && window.scrollY > 200) { // Ocultar después de un poco de scroll
+                if (window.scrollY > lastScrollY && window.scrollY > 200) {
                     topNav.classList.add('nav-hidden');
                 } else {
                     topNav.classList.remove('nav-hidden');
@@ -483,6 +504,19 @@
                         const scrollAmount = 150;
                         scrollContainer.scrollBy({ top: scrollAmount * direction, left: 0, behavior: 'smooth' });
                     }
+                });
+            });
+
+            // Lógica para el menú móvil
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+            });
+            mobileMenuCloseButton.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
                 });
             });
         });
