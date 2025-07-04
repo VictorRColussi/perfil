@@ -71,12 +71,19 @@
             padding: 1rem;
             box-sizing: border-box;
             transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.8s ease;
+            will-change: transform, opacity; /* Mejora de rendimiento para la animación */
         }
         
         .recede {
             transform: scale(0.9) !important;
             opacity: 0.6 !important;
-            filter: blur(4px);
+        }
+
+        /* CORRECCIÓN DE VIBRACIÓN: Aplicar blur solo en pantallas grandes */
+        @media (min-width: 768px) {
+            .recede {
+                filter: blur(4px);
+            }
         }
 
         .card-content {
@@ -87,9 +94,15 @@
             width: 100%;
             height: 100%;
             background-color: #1f2937;
-            padding: 2rem;
+            padding: 1.5rem; /* Padding base para móvil */
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .card-content {
+                padding: 2rem; /* Padding para pantallas más grandes */
+            }
         }
 
         #top-nav {
@@ -251,8 +264,8 @@
         <div id="profile-info" class="flex flex-col items-center">
             <div class="profile-main-info text-center">
                 <img src="https://placehold.co/200x200/4a5568/e2e8f0?text=Tu+Foto" alt="Foto de Perfil" class="w-40 h-40 rounded-full border-4 border-gray-400 object-cover shadow-2xl mb-4 transition-all duration-500 mx-auto">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2 transition-all duration-500">Tu Nombre Aquí</h1>
-                <p class="text-lg text-gray-300 max-w-2xl mx-auto transition-all duration-500">
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2 transition-all duration-500">Tu Nombre Aquí</h1>
+                <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto transition-all duration-500">
                     Un breve resumen sobre ti. Apasionado desarrollador de software con experiencia en la creación de soluciones innovadoras y escalables.
                 </p>
             </div>
@@ -274,7 +287,7 @@
             <!-- SECCIONES DE CONTENIDO -->
             <section id="educacion" class="profile-section">
                 <div class="card-content">
-                    <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+                    <div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                         <!-- Columna Títulos -->
                         <div class="text-center lg:text-left">
                             <h2 class="text-3xl md:text-4xl font-bold mb-4">Títulos Académicos</h2>
@@ -284,12 +297,12 @@
                             </div>
                             <div id="titles-scroll" class="scroll-container pr-2">
                                 <div class="space-y-4">
-                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Ingeniería en Sistemas</h3><p class="text-gray-400">Universidad Tecnológica - 2020</p></div></div>
-                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Maestría en Ciencia de Datos</h3><p class="text-gray-400">Instituto de Postgrado - 2022</p></div></div>
-                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 3</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
-                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 4</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
-                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 5</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
-                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-xl font-semibold text-cyan-400">Título Placeholder 6</h3><p class="text-gray-400">Institución Placeholder</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-lg md:text-xl font-semibold text-cyan-400">Ingeniería en Sistemas</h3><p class="text-sm md:text-base text-gray-400">Universidad Tecnológica - 2020</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-lg md:text-xl font-semibold text-cyan-400">Maestría en Ciencia de Datos</h3><p class="text-sm md:text-base text-gray-400">Instituto de Postgrado - 2022</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-lg md:text-xl font-semibold text-cyan-400">Título Placeholder 3</h3><p class="text-sm md:text-base text-gray-400">Institución Placeholder</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-lg md:text-xl font-semibold text-cyan-400">Título Placeholder 4</h3><p class="text-sm md:text-base text-gray-400">Institución Placeholder</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-lg md:text-xl font-semibold text-cyan-400">Título Placeholder 5</h3><p class="text-sm md:text-base text-gray-400">Institución Placeholder</p></div></div>
+                                    <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex items-center gap-4"><img src="https://placehold.co/100x100/111827/4a5568?text=Cert." alt="Imagen del certificado" class="w-16 h-16 rounded-lg flex-shrink-0"><div><h3 class="text-lg md:text-xl font-semibold text-cyan-400">Título Placeholder 6</h3><p class="text-sm md:text-base text-gray-400">Institución Placeholder</p></div></div>
                                 </div>
                             </div>
                         </div>
@@ -348,10 +361,10 @@
                 <div class="card-content">
                     <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Testimonios</h2>
                     <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su profesionalismo y conocimiento técnico llevaron nuestro proyecto al siguiente nivel."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Cliente Satisfecho</cite></div></blockquote>
-                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Un colaborador excepcional, siempre dispuesto a ayudar y con una capacidad increíble para resolver problemas."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Colega de Trabajo</cite></div></blockquote>
-                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"La calidad del entregable final superó todas nuestras expectativas. Altamente recomendado."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Director de Proyecto</cite></div></blockquote>
-                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1"><div><p class="text-gray-300 italic">"Su visión estratégica fue clave para el éxito. Un verdadero líder y un gran compañero."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Mentor Técnico</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex flex-col sm:flex-row items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1 mx-auto sm:mx-0"><div><p class="text-gray-300 italic text-center sm:text-left">"Su profesionalismo y conocimiento técnico llevaron nuestro proyecto al siguiente nivel."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Cliente Satisfecho</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex flex-col sm:flex-row items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1 mx-auto sm:mx-0"><div><p class="text-gray-300 italic text-center sm:text-left">"Un colaborador excepcional, siempre dispuesto a ayudar y con una capacidad increíble para resolver problemas."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Colega de Trabajo</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex flex-col sm:flex-row items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Cliente" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1 mx-auto sm:mx-0"><div><p class="text-gray-300 italic text-center sm:text-left">"La calidad del entregable final superó todas nuestras expectativas. Altamente recomendado."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Director de Proyecto</cite></div></blockquote>
+                        <blockquote class="bg-gray-800 p-6 md:p-8 rounded-2xl border border-gray-700 flex flex-col sm:flex-row items-start gap-6"><img src="https://placehold.co/100x100/718096/e2e8f0?text=Foto" alt="Foto de Colega" class="w-16 h-16 rounded-full object-cover flex-shrink-0 mt-1 mx-auto sm:mx-0"><div><p class="text-gray-300 italic text-center sm:text-left">"Su visión estratégica fue clave para el éxito. Un verdadero líder y un gran compañero."</p><cite class="mt-4 block text-right font-semibold text-purple-400">- Mentor Técnico</cite></div></blockquote>
                     </div>
                 </div>
             </section>
@@ -359,7 +372,7 @@
                 <div class="card-content">
                     <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">Demostración Interactiva de IA</h2>
                     <div class="w-full max-w-4xl h-3/5 bg-gray-900 rounded-2xl overflow-hidden border border-gray-700"><iframe src="" title="Demostración de IA" class="w-full h-full"></iframe></div>
-                    <p class="mt-4 text-gray-400">Aquí puedes incrustar una demo de tu proyecto de IA.</p>
+                    <p class="mt-4 text-gray-400 text-center">Aquí puedes incrustar una demo de tu proyecto de IA.</p>
                 </div>
             </section>
             <section id="contacto" class="profile-section">
@@ -369,9 +382,9 @@
                             <h2 class="text-3xl md:text-4xl font-bold mb-4">Información de Contacto</h2>
                             <p class="text-gray-400 mb-8 text-lg">No dudes en contactarme a través de estos medios o sígueme en mis redes.</p>
                             <div class="space-y-4 text-lg">
-                                <a href="mailto:tuemail@example.com" class="flex items-center gap-4 hover:text-cyan-400 transition-colors"><i class="fas fa-envelope w-6 text-center"></i><span>tuemail@example.com</span></a>
-                                <a href="tel:+123456789" class="flex items-center gap-4 hover:text-cyan-400 transition-colors"><i class="fas fa-phone w-6 text-center"></i><span>+1 234 567 89</span></a>
-                                <div class="flex items-center gap-4"><i class="fas fa-map-marker-alt w-6 text-center"></i><span>Tu Ciudad, Tu País</span></div>
+                                <a href="mailto:tuemail@example.com" class="flex items-center justify-center lg:justify-start gap-4 hover:text-cyan-400 transition-colors"><i class="fas fa-envelope w-6 text-center"></i><span>tuemail@example.com</span></a>
+                                <a href="tel:+123456789" class="flex items-center justify-center lg:justify-start gap-4 hover:text-cyan-400 transition-colors"><i class="fas fa-phone w-6 text-center"></i><span>+1 234 567 89</span></a>
+                                <div class="flex items-center justify-center lg:justify-start gap-4"><i class="fas fa-map-marker-alt w-6 text-center"></i><span>Tu Ciudad, Tu País</span></div>
                             </div>
                             <h3 class="text-2xl font-bold mt-12 mb-4">Mis Redes</h3>
                             <div class="flex justify-center lg:justify-start gap-6">
